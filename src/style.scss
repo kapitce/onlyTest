@@ -1,0 +1,180 @@
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Убираем внутренние отступы */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Выставляем основные настройки по-умолчанию для body */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Упрощаем работу с изображениями */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Указываем понятную периодичность в потоке данных у article*/
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@import "./fonts.scss";
+
+$inputWidth: 640px;
+$inputHeight: 60px;
+$radius: 8px;
+
+
+.App{
+    font-family: 'HelveticaNeue';
+}
+.mainForm{
+    display: inline-block;
+    text-align: left;
+    margin-top: 253px;
+}
+.formItem{
+    margin-bottom: 20px;
+    .formInput{
+        input{
+            height: $inputHeight;
+            width: $inputWidth;
+            border-radius: $radius;
+            background-color: #F5F5F5;
+            border: none;
+            margin-top: 10px;
+            padding: 20px 0px 20px 20px;
+        }
+    }
+    .itemLabel{
+        font-size: 16px;
+    }
+    .err{
+        color: #E26F6F;
+        margin-top: 8px;
+        font-size: 14px;
+    }
+    .rememberPassword{
+      display: inline-block;
+    }
+}
+.formButton{
+    button{
+        width: $inputWidth;
+        height: $inputHeight;
+        border-radius: $radius;
+        margin-top: 40px;
+        border: none;
+        background-color: #4A67FF;
+        color: #fff;
+        &:hover{
+          background-color: #2447f8;
+        }
+    }
+}
+.logo{
+  margin-top: 40px;
+  font-weight: 700;
+  font-size: 64px;
+}
+.options_input{
+  display: none;
+  &:checked + .options_label::after{ 
+    transform: scale(1);
+  }
+}
+.options_label{
+  display: inline-flex;
+  width: 100%;
+  font-size: 16px;
+  align-items: center;
+  position: relative;
+  margin-top: 20px;
+  &::before{
+    content: "";
+    border: 1px solid;
+    align-self: flex-start;
+    flex: 0 0 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 0px 7px 0px 0px;
+  }
+  &::after{
+    transition: all 0.2s ease 0s;
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 14px;
+    height: 14px;
+    background-color: #4A67FF;
+    border-radius: 2px;
+    transform: scale(0);
+  }
+  span{
+
+    display: inline-flex;
+    margin-left: 14px;
+    width: 158px;
+    height: 19px;
+  }
+}
