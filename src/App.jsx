@@ -1,50 +1,53 @@
-import {useForm} from 'react-hook-form'
 import {} from 'styled-components'
+import {AuthPage} from './pages/authPage'
+import { useState } from 'react'
 import "./style.scss"
 
 function App() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const mainUser = {
+    email: 'steve.jobs@example.com',
+    password: 'password'
+  }
+
+  const [user, setUser] = useState({email: ''})
+  const [error, setError] = useState('')
+
+  const Login = (details) =>{
+    if (details.email === mainUser.email && details.password === mainUser.password){
+      setUser({
+        email: details.email,
+        password: details.password
+      })
+    }
+    else{
+      if(details.email !== mainUser.email){
+        setError(details.email)
+      }
+    }
+  }
+
+  const logout = () => {
+    setUser({
+      email: '',
+      password: ''
+    })
+  } 
+
   return (
     <div className="App">
-      <center>
-        <div className="logo">
-          ONLY.
+      {
+      (user.email !== "") ? (
+        <div className="authedForm">
+          <center>
+          <div className="logo">ONLY.</div>
+            <div className="mainLogin">
+              <span>Здравствуйсте, <strong>{user.email}</strong></span>
+              <div className="logout"><button onClick={logout}>Выход</button></div>
+            </div>
+          </center>
         </div>
-      <div className="mainForm">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="formItem">
-            <div className="formLabel">
-              <label htmlFor="">Логин</label>
-            </div>
-            <div className="formInput">
-              <input type="email" placeholder="Email" {...register("email", {required: "Обязательное поле"})} />
-            </div>
-          <div className='err'>
-            {errors?.email && <p>{errors?.email?.message || "Ошибка"}</p>}
-          </div>
-          </div>
-         
-          <div className="formItem">
-            <div className="formLabel">
-              <label>Пароль</label>
-            </div>
-            <div className="formInput">
-              <input type="password" placeholder="Password" {...register("Password", {})} />
-            </div>
-            <div className="rememberPassword">
-              <input type="radio" id='checkPassword' class='options_input'/>
-              <label htmlFor="checkPassword" class='options_label'>
-                <span>Запомнить пароль</span>
-              </label>
-            </div>
-          </div>
-          <div className="formButton">
-            <button type='submit'>Войти</button>
-          </div>
-        </form>
-      </div>
-      </center>
+      ):(<AuthPage Login={Login} error={error}/>)
+      }
     </div>
   );
 }

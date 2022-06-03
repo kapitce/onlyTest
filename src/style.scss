@@ -84,7 +84,7 @@ $radius: 8px;
 
 
 .App{
-    font-family: 'HelveticaNeue';
+    font-family: 'Neue';
 }
 .mainForm{
     display: inline-block;
@@ -115,15 +115,33 @@ $radius: 8px;
     .rememberPassword{
       display: inline-block;
     }
+    .errorMessage{
+      background-color: #F5E9E9;
+      padding: 21px 22px;
+      border-radius: 8px;
+      border: 1px solid #E26F6F;
+      margin-bottom: 27px;
+      .test::before{
+        width: 20px;
+        padding: 1px 8px 2px 8px;
+        border-radius: 50%;
+        background-color: #FFC8C8;
+        color:#EE6565 ;
+        content: "!";
+        margin-right: 14px;
+      }
+    }
 }
 .formButton{
-    button{
+    input{
         width: $inputWidth;
         height: $inputHeight;
         border-radius: $radius;
         margin-top: 40px;
         border: none;
         background-color: #4A67FF;
+        font-size: 18px;
+        font-weight: 700;
         color: #fff;
         &:hover{
           background-color: #2447f8;
@@ -176,5 +194,26 @@ $radius: 8px;
     margin-left: 14px;
     width: 158px;
     height: 19px;
+  }
+}
+.mainLogin{
+  margin-top: 342px;
+  span{
+    font-size: 40px;
+  }
+  .logout{
+    margin-top: 50px;
+    button{
+      width: 200px;
+      height: 60px;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 8px;
+      border: none;
+      background-color: #F5F5F5;
+      &:hover{
+        background-color: #e2e2e2;
+      }
+    }
   }
 }
